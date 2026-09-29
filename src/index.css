@@ -1,0 +1,119 @@
+/* CSS Reset and Variables */
+:root {
+  --primary-bg: #0b1d3a;       /* Deep Midnight Blue */
+  --primary-light: #162f50;    /* Lighter Blue */
+  --card-bg: #fdfbf7;          /* Soft Ivory / Pearl */
+  --text-dark: #152c4b;        /* Deep Navy for text on card */
+  --text-light: #ffffff;
+  --accent-gold: #c5a059;      /* Elegant Gold */
+  --accent-soft: #8ba3ba;      /* Soft Dusty Blue */
+  
+  --font-arabic-title: 'Playfair Display', 'Amiri', serif;
+  --font-arabic-text: 'Montserrat', 'Cairo', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-arabic-text);
+  background-color: #FAF7F2;
+  background-image: url('/backg.png');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-arabic-title);
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.text-gold { color: var(--accent-gold); }
+.text-navy { color: var(--text-dark); }
+.text-cream { color: var(--card-bg); }
+
+/* Common Components */
+.section-container {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Updated Button to match the image style */
+.btn-primary {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  font-family: var(--font-arabic-text);
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.8rem 2.5rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(21, 44, 75, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(21, 44, 75, 0.5);
+}
+
+/* Glassmorphism card for inner sections */
+.glass-card {
+  background: rgba(253, 251, 247, 0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(253, 251, 247, 0.1);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+}
+
+/* Animations for falling flowers */
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.falling-flower {
+  position: absolute;
+  top: -10vh;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  z-index: 1;
+}
