@@ -4,8 +4,6 @@
 
 .responses-page {
   min-height: 100vh;
-  background-color: #f5f0eb;
-  background-image: url("https://www.transparenttextures.com/patterns/cream-paper.png");
   font-family: 'Montserrat', sans-serif;
   color: #382350;
 }
@@ -130,12 +128,12 @@
 .responses-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 50;
   padding: 1.2rem 2rem;
-  background: rgba(250, 247, 242, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+  background: #382350;
+  background-image: linear-gradient(135deg, #382350, #2c1a40);
+  box-shadow: 0 8px 30px rgba(20, 10, 30, 0.3);
+  border-bottom: 2px solid #C5A059;
 }
 
 .responses-header-inner {
@@ -151,32 +149,39 @@
   display: flex;
   align-items: center;
   font-family: 'Great Vibes', cursive;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 400;
-  color: #4E3865;
+  color: #FAF7F2;
+  letter-spacing: 0.05em;
+}
+
+.responses-title svg {
+  color: #C5A059;
+  margin-right: 12px;
 }
 
 .logout-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 18px;
-  border: 1px solid rgba(91, 61, 122, 0.3);
-  border-radius: 20px;
-  background: transparent;
-  color: #6b5680;
+  gap: 8px;
+  padding: 10px 22px;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 30px;
+  background: rgba(197, 160, 89, 0.05);
+  color: #FAF7F2;
   font-family: 'Montserrat', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
-  background: rgba(91, 61, 122, 0.1);
-  color: #4E3865;
+  background: rgba(197, 160, 89, 0.15);
+  border-color: #C5A059;
+  transform: translateY(-2px);
 }
 
 /* ===== Stats ===== */
