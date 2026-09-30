@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { FaMapMarkerAlt, FaHeart } from 'react-icons/fa';
 import './RSVP.css';
 import { submitRsvp, isRsvpConfigured, type Attending } from '../firebase';
@@ -45,7 +45,7 @@ const RSVP: React.FC = () => {
       <div className="rsvp-container">
 
         {/* LEFT COLUMN: Location */}
-        <motion.div 
+        <m.div 
           className="rsvp-location"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -57,7 +57,7 @@ const RSVP: React.FC = () => {
           <p className="rsvp-location-city">Beni-Suef · Egypt</p>
 
           <div className="location-image-wrapper">
-            <img src="/grand.png" alt="Grand Festival venue" className="location-img" />
+            <img src="/grand.webp" alt="Grand Festival venue" className="location-img" width={1400} height={625} loading="lazy" decoding="async" />
           </div>
 
           <a
@@ -69,10 +69,10 @@ const RSVP: React.FC = () => {
             <FaMapMarkerAlt size={13} />
             Get Directions <span className="arrow">→</span>
           </a>
-        </motion.div>
+        </m.div>
 
         {/* RIGHT COLUMN: RSVP Form */}
-        <motion.div 
+        <m.div 
           className="rsvp-form-panel"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -81,7 +81,7 @@ const RSVP: React.FC = () => {
         >
           <AnimatePresence mode="wait">
             {status === 'sent' ? (
-              <motion.div
+              <m.div
                 key="thanks"
                 className="rsvp-thanks"
                 initial={{ opacity: 0, y: 12 }}
@@ -98,9 +98,9 @@ const RSVP: React.FC = () => {
                 <button type="button" className="rsvp-link-btn" onClick={reset}>
                   Send another response
                 </button>
-              </motion.div>
+              </m.div>
             ) : (
-              <motion.form
+              <m.form
                 key="form"
                 className="rsvp-form"
                 onSubmit={submit}
@@ -166,7 +166,7 @@ const RSVP: React.FC = () => {
 
                 {error && <p className="rsvp-error" role="alert">{error}</p>}
 
-                <motion.button
+                <m.button
                   type="submit"
                   className="rsvp-submit"
                   disabled={status === 'sending'}
@@ -174,11 +174,11 @@ const RSVP: React.FC = () => {
                   whileTap={{ scale: 0.97 }}
                 >
                   {status === 'sending' ? 'Sending…' : 'Send RSVP'}
-                </motion.button>
-              </motion.form>
+                </m.button>
+              </m.form>
             )}
           </AnimatePresence>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

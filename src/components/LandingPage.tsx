@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FaHeart, FaMusic, FaVolumeMute } from 'react-icons/fa';
 import OurStory from './OurStory';
 import Events from './Events';
 import RSVP from './RSVP';
 import Footer from './Footer';
 import InvitationCover from './InvitationCover';
+import SectionDivider from './SectionDivider';
+import { scrollToElement } from './SmoothScroll';
 import './LandingPage.css';
 
 interface LandingPageProps {
@@ -37,7 +39,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ isOpened, musicPlaying, onTog
           <InvitationCover
             showNames={isOpened}
             showButton={false}
-            onExplore={() => document.querySelector('.hero-section')?.nextElementSibling?.scrollIntoView({ behavior: 'smooth' })}
+            onExplore={() => {
+              if (window.innerWidth <= 900) {
+                scrollToElement(document.querySelector('.invitation-text'));
+              } else {
+                scrollToElement(document.getElementById('our-story'));
+              }
+            }}
           />
         </div>
 
@@ -57,15 +65,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ isOpened, musicPlaying, onTog
           <p className="invitation-text-day">Saturday</p>
           <p className="invitation-text-date">10 · 10 · 2026</p>
           <p className="invitation-text-place"></p>
-          <motion.button
+          <m.button
             className="invitation-text-rsvp"
             type="button"
-            onClick={() => document.getElementById('rsvp')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => scrollToElement(document.getElementById('rsvp'))}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
           >
             RSVP <span aria-hidden="true">→</span>
-          </motion.button>
+          </m.button>
         </div>
 
         <div className="hero-col-right countdown-card">
@@ -93,8 +101,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ isOpened, musicPlaying, onTog
       </div>
     </section>
 
+    <SectionDivider />
+
     {/* OUR STORY SECTION */}
     <OurStory />
+
+    <SectionDivider />
 
     {/* EVENTS SECTION */}
     <Events />
@@ -102,6 +114,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ isOpened, musicPlaying, onTog
     {/* GALLERY SECTION
     <Gallery />
     */}
+
+    <SectionDivider />
 
     {/* RSVP SECTION */}
     <RSVP />
@@ -112,26 +126,43 @@ const LandingPage: React.FC<LandingPageProps> = ({ isOpened, musicPlaying, onTog
 );
 
 /* Own component so the per-second tick re-renders only the numbers, not the whole page */
+// same time as the wedding card in the Events section (8:00 PM)
+const WEDDING_START = new Date('2026-10-10T20:00:00');
+
 const HeroCountdown: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [started, setStarted] = useState(false);
 
   useEffect(() => {
-    const weddingDate = new Date('2026-10-10T18:00:00');
+    let interval = 0;
     const tick = () => {
-      const diff = weddingDate.getTime() - new Date().getTime();
-      if (diff > 0) {
-        setTimeLeft({
-          days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((diff / (1000 * 60)) % 60),
-          seconds: Math.floor((diff / 1000) % 60),
-        });
+      const diff = WEDDING_START.getTime() - Date.now();
+      if (diff <= 0) {
+        setStarted(true);
+        window.clearInterval(interval);
+        return;
       }
+      setTimeLeft({
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      });
     };
     tick();
-    const interval = window.setInterval(tick, 1000);
+    interval = window.setInterval(tick, 1000);
     return () => window.clearInterval(interval);
   }, []);
+
+  if (started) {
+    return (
+      <div className="countdown-done">
+        <FaHeart className="countdown-done-heart" aria-hidden="true" />
+        <p className="countdown-done-title">Today is the day</p>
+        <p className="countdown-done-note">Thank you for celebrating with us</p>
+      </div>
+    );
+  }
 
   return (
     <div className="countdown-rings">

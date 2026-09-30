@@ -1,14 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { FaHeart } from 'react-icons/fa';
 import './OurStory.css';
 
 const OurStory: React.FC = () => {
   return (
-    <section className="our-story-section">
+    <section id="our-story" className="our-story-section">
       <div className="our-story-container">
         {/* LEFT: text */}
-        <motion.div 
+        <m.div 
           className="our-story-left"
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -31,10 +31,10 @@ const OurStory: React.FC = () => {
 
           <p className="our-story-body">
 Once, they were two little souls, each living their own story. Little did they know, their paths would cross and become one beautiful forever.</p>
-        </motion.div>
+        </m.div>
 
         {/* RIGHT: two photos */}
-        <motion.div 
+        <m.div 
           className="our-story-right"
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -42,14 +42,14 @@ Once, they were two little souls, each living their own story. Little did they k
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
           <div className="our-story-photos">
-            <div className="story-photo-wrapper right-wrapper">
-              <img src="/m.png" alt="Bride childhood" className="story-photo right-photo" />
+            <div className="story-photo-wrapper">
+              <img src="/m.webp" alt="Groom as a child" className="story-photo" width={756} height={1000} loading="lazy" decoding="async" />
             </div>
-            <div className="story-photo-wrapper left-wrapper">
-              <img src="/s.png" alt="Groom childhood" className="story-photo left-photo" />
+            <div className="story-photo-wrapper">
+              <img src="/s.webp" alt="Bride as a child" className="story-photo" width={756} height={1000} loading="lazy" decoding="async" />
             </div>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

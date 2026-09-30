@@ -7,7 +7,7 @@
   place-items: center;
   overflow: hidden;
   background-color: #FAF7F2;
-  background-image: url('/backg.png');
+  background-image: url('/backg.webp');
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -95,7 +95,7 @@
 }
 
 .door-front {
-  background: url('/x.png') no-repeat;
+  background: url('/x.webp') no-repeat;
   background-size: 200% 100%;
 }
 

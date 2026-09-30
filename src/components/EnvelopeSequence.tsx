@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import InvitationCover from './InvitationCover';
+import { scrollToTopNow } from './SmoothScroll';
 import './EnvelopeSequence.css';
 
 interface EnvelopeSequenceProps {
@@ -62,12 +63,9 @@ const EnvelopeSequence: React.FC<EnvelopeSequenceProps> = ({ onReveal, onOpenCom
     timers.current.push(window.setTimeout(fn, ms));
   };
 
+  // Where the card must move and how much it must grow to sit exactly on the page's card
+  // (phones: the full-screen card, tablet/desktop: the card in its column)
   const measureZoom = () => {
-    if (window.innerWidth <= 900) {
-      // On mobile, just zoom into the center of the screen
-      return { x: 0, y: 0, scale: 1.2 };
-    }
-
     const scene = sceneRef.current?.getBoundingClientRect();
     const letter = letterRef.current?.getBoundingClientRect();
     const target = document.querySelector('.landing-page .final-invitation')?.getBoundingClientRect();
@@ -92,7 +90,7 @@ const EnvelopeSequence: React.FC<EnvelopeSequenceProps> = ({ onReveal, onOpenCom
     setStage(1);
     later(() => setStage(2), RIBBON_FALL_MS);
     later(() => {
-      window.scrollTo(0, 0);
+      scrollToTopNow();
       setZoom(measureZoom());
       setStage(3);
     }, RIBBON_FALL_MS + DOORS_OPEN_MS);
@@ -104,8 +102,8 @@ const EnvelopeSequence: React.FC<EnvelopeSequenceProps> = ({ onReveal, onOpenCom
   };
 
   return (
-    <main ref={introRef} className="invitation-intro" data-stage={stage}>
-      <motion.div
+    <main ref={introRef} className="invitation-intro" data-stage={stage} data-lenis-prevent>
+      <m.div
         ref={sceneRef}
         className="envelope-scene"
         initial={{ opacity: 0, y: 24 }}
@@ -141,9 +139,9 @@ const EnvelopeSequence: React.FC<EnvelopeSequenceProps> = ({ onReveal, onOpenCom
           disabled={stage !== 0}
           aria-label="Untie the ribbon and open the invitation"
         >
-          <img className="bow-image" src="/bow.png" alt="" />
+          <img className="bow-image" src="/bow.webp" alt="" />
         </button>
-      </motion.div>
+      </m.div>
     </main>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { FaHeart, FaTimesCircle, FaSignOutAlt, FaEnvelopeOpen, FaUserCheck, FaUserTimes, FaQuoteLeft } from 'react-icons/fa';
 import { signIn, fetchRsvps, UnauthorizedError, type Rsvp, type Session } from '../firebase';
 import './ResponsesPage.css';
@@ -64,7 +64,7 @@ const ResponsesPage: React.FC = () => {
     return (
       <div className="responses-page">
         <div className="responses-login-wrapper">
-          <motion.div
+          <m.div
             className="responses-login-card"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -84,11 +84,11 @@ const ResponsesPage: React.FC = () => {
                 <input type="password" autoComplete="current-password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required />
               </label>
               {loginError && <p className="login-error">{loginError}</p>}
-              <motion.button type="submit" className="login-submit" disabled={logging} whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
+              <m.button type="submit" className="login-submit" disabled={logging} whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }}>
                 {logging ? 'Signing in…' : 'Sign In'}
-              </motion.button>
+              </m.button>
             </form>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     );
@@ -110,20 +110,20 @@ const ResponsesPage: React.FC = () => {
 
       {/* Stats */}
       <div className="responses-stats">
-        <motion.div className="stat-card" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+        <m.div className="stat-card" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
           <span className="stat-number">{rsvps.length}</span>
           <span className="stat-label">Total</span>
-        </motion.div>
-        <motion.div className="stat-card stat-yes" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
+        </m.div>
+        <m.div className="stat-card stat-yes" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
           <FaUserCheck className="stat-icon" />
           <span className="stat-number">{yesCount}</span>
           <span className="stat-label">Attending</span>
-        </motion.div>
-        <motion.div className="stat-card stat-no" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
+        </m.div>
+        <m.div className="stat-card stat-no" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
           <FaUserTimes className="stat-icon" />
           <span className="stat-number">{noCount}</span>
           <span className="stat-label">Declined</span>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Filter */}
@@ -146,7 +146,7 @@ const ResponsesPage: React.FC = () => {
 
         <AnimatePresence>
           {filtered.map((rsvp, i) => (
-            <motion.div
+            <m.div
               key={rsvp.id}
               className={`response-card ${rsvp.attending === 'yes' ? 'is-attending' : 'is-declined'}`}
               initial={{ opacity: 0, y: 16 }}
@@ -176,7 +176,7 @@ const ResponsesPage: React.FC = () => {
                   <p>{rsvp.message}</p>
                 </div>
               )}
-            </motion.div>
+            </m.div>
           ))}
         </AnimatePresence>
       </div>

@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import EnvelopeSequence from './components/EnvelopeSequence';
 import LandingPage from './components/LandingPage';
-import ResponsesPage from './components/ResponsesPage';
 import './index.css';
+
+// admin-only page: kept out of the guests' download
+const ResponsesPage = lazy(() => import('./components/ResponsesPage'));
 
 function WeddingSite() {
   const [isOpened, setIsOpened] = useState(false);
@@ -42,13 +44,13 @@ function WeddingSite() {
 
   return (
     <div className="app-container">
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2 }}
       >
         <LandingPage isOpened={isOpened} musicPlaying={musicPlaying} onToggleMusic={toggleMusic} />
-      </motion.div>
+      </m.div>
 
       {!introDone && (
         <EnvelopeSequence
@@ -65,7 +67,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<WeddingSite />} />
-      <Route path="/responses" element={<ResponsesPage />} />
+      <Route path="/responses" element={<Suspense fallback={null}><ResponsesPage /></Suspense>} />
     </Routes>
   );
 }

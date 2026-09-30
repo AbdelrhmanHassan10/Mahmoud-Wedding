@@ -1,0 +1,14 @@
+# dependencies and build output: recreated by `npm install` / `npm run build`
+node_modules/
+dist/
+
+# local secrets (see .env.example)
+.env
+.env.*
+!.env.example
+
+# logs and editor files
+*.log
+.DS_Store
+.vscode/*
+!.vscode/extensions.json

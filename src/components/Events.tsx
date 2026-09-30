@@ -1,17 +1,16 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaCalendarAlt, FaClock, FaHeart } from 'react-icons/fa';
+import { m } from 'framer-motion';
+import { FaMapMarkerAlt, FaCalendarAlt, FaClock } from 'react-icons/fa';
 import './Events.css';
 
 const Events: React.FC = () => {
   const textDark = '#382350';
-  const gold = '#C5A059';
 
   return (
     <section className="events-section">
       <div className="events-container">
         {/* LEFT COLUMN: Header + Cards */}
-        <motion.div 
+        <m.div 
           className="events-left"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -27,16 +26,7 @@ const Events: React.FC = () => {
 
           <div className="events-cards-wrapper">
             {/* ENGAGEMENT CARD */}
-            <motion.div
-              whileHover={{ y: -8, boxShadow: '0 25px 50px rgba(56, 35, 80, 0.2)' }}
-              className="event-card"
-            >
-              {/* Corner flower decorations */}
-              <div className="card-corner-flower corner-flower-tl" />
-              <div className="card-corner-flower corner-flower-tr" />
-              <div className="card-corner-flower corner-flower-bl" />
-              <div className="card-corner-flower corner-flower-br" />
-
+            <div className="event-card">
               <div className="event-card-inner">
                 {/* Custom Image Icon (Engagement) */}
                 <div className="event-icon-custom engagement-icon" />
@@ -75,19 +65,10 @@ const Events: React.FC = () => {
                   View on Map <span className="btn-arrow">→</span>
                 </a>
               </div>
-            </motion.div>
+            </div>
 
             {/* WEDDING CARD */}
-            <motion.div
-              whileHover={{ y: -8, boxShadow: '0 25px 50px rgba(56, 35, 80, 0.2)' }}
-              className="event-card"
-            >
-              {/* Corner flower decorations */}
-              <div className="card-corner-flower corner-flower-tl" />
-              <div className="card-corner-flower corner-flower-tr" />
-              <div className="card-corner-flower corner-flower-bl" />
-              <div className="card-corner-flower corner-flower-br" />
-
+            <div className="event-card">
               <div className="event-card-inner">
                 {/* Custom Image Icon (Wedding) */}
                 <div className="event-icon-custom wedding-icon" />
@@ -126,9 +107,9 @@ const Events: React.FC = () => {
                   View on Map <span className="btn-arrow">→</span>
                 </a>
               </div>
-            </motion.div>
+            </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* RIGHT COLUMN: Arch Image */}
         {/* <div className="events-right">

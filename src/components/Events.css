@@ -104,7 +104,7 @@
   position: relative;
   width: 340px;
   /* Warm cream/marble background */
-  background-image: url('/cart-bg.png');
+  background-image: url('/cart-bg.webp');
   background-size: cover;
   background-position: center;
   border-radius: 20px;
@@ -114,6 +114,13 @@
   transition: transform 0.4s ease;
   /* Gold border - clearly visible */
   overflow: visible;
+}
+
+/* Lift on hover (mouse only): transform is cheap to animate, unlike box-shadow */
+@media (hover: hover) {
+  .event-card:hover {
+    transform: translateY(-8px);
+  }
 }
 
 /* Inner gold line (double border effect) */
@@ -192,7 +199,7 @@
   height: 95px;
   border-radius: 50%;
   margin-bottom: 1rem;
-  background-image: url('/2.png');
+  background-image: url('/2.webp');
   background-repeat: no-repeat;
   /* Use 'auto' for height to prevent any distortion/stretching of the circles */
   background-size: 460% auto;

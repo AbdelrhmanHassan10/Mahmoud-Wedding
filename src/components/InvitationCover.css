@@ -29,7 +29,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background-image: url('/public/opening.png');
+  background-image: url('/opening.webp');
   background-size: 120% 120%;
   background-position: center;
   background-repeat: no-repeat;
@@ -190,6 +190,24 @@
   box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
 }
 
+
+/* Phones: the card is taller than the artwork (full screen), so the artwork keeps its
+   proportions (sized by width) and the paper colour of its edges fills above and below.
+   Applies to the card inside the envelope too, so both look identical at the handoff. */
+@media (max-width: 600px) {
+  .final-invitation {
+    background: #f8f0e7;
+  }
+
+  .invitation-board-bg {
+    background-size: 120% auto;
+  }
+
+  .invitation-letter-frame {
+    /* inner frame of opening.png at this size, same 93% fill as on larger screens */
+    height: 86cqi;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .final-invitation,
