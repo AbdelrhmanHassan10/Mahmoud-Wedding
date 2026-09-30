@@ -1,5 +1,6 @@
 import React from 'react';
 import { m } from 'framer-motion';
+import { reveal } from '../motion';
 import { FaMapMarkerAlt, FaCalendarAlt, FaClock } from 'react-icons/fa';
 import './Events.css';
 
@@ -10,12 +11,9 @@ const Events: React.FC = () => {
     <section className="events-section">
       <div className="events-container">
         {/* LEFT COLUMN: Header + Cards */}
-        <m.div 
+        <m.div
           className="events-left"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          {...reveal()}
         >
           <div className="events-header">
             <p className="events-subtitle">The Events</p>

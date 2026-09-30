@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AnimatePresence, m } from 'framer-motion';
+import { reveal } from '../motion';
 import { FaMapMarkerAlt, FaHeart } from 'react-icons/fa';
 import './RSVP.css';
 import { submitRsvp, isRsvpConfigured, type Attending } from '../firebase';
@@ -45,12 +46,9 @@ const RSVP: React.FC = () => {
       <div className="rsvp-container">
 
         {/* LEFT COLUMN: Location */}
-        <m.div 
+        <m.div
           className="rsvp-location"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          {...reveal()}
         >
           <p className="rsvp-subtitle">Our Location</p>
           <h2 className="rsvp-location-title">Grand Festival</h2>
@@ -72,12 +70,9 @@ const RSVP: React.FC = () => {
         </m.div>
 
         {/* RIGHT COLUMN: RSVP Form */}
-        <m.div 
+        <m.div
           className="rsvp-form-panel"
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          {...reveal(0.15)}
         >
           <AnimatePresence mode="wait">
             {status === 'sent' ? (

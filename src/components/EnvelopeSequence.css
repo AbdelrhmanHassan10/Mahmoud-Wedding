@@ -6,18 +6,25 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  background-color: #FAF7F2;
-  background-image: url('/backg.webp');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  transition: background-color 0.3s ease;
 }
 
-/* 4: the page's card now sits exactly under this one; clear the overlay but keep the card */
+/* The overlay's backdrop sits on its own layer so it can fade instead of vanishing */
+.invitation-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #FAF7F2 url('/backg.webp') center top / cover no-repeat;
+  transition: opacity 0.9s ease;
+}
+
+/* 4: the page's card now sits exactly under this one; fade the backdrop out, keep the card */
 .invitation-intro[data-stage='4'] {
-  background: transparent;
   pointer-events: none;
+}
+
+.invitation-intro[data-stage='4']::before {
+  opacity: 0;
 }
 
 /* ===== Envelope ===== */

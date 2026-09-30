@@ -1,5 +1,6 @@
 import React from 'react';
 import { m } from 'framer-motion';
+import { reveal } from '../motion';
 import { FaHeart } from 'react-icons/fa';
 import './OurStory.css';
 
@@ -8,12 +9,9 @@ const OurStory: React.FC = () => {
     <section id="our-story" className="our-story-section">
       <div className="our-story-container">
         {/* LEFT: text */}
-        <m.div 
+        <m.div
           className="our-story-left"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          {...reveal()}
         >
           <p className="our-story-eyebrow">
             <span aria-hidden="true" />
@@ -34,12 +32,9 @@ Once, they were two little souls, each living their own story. Little did they k
         </m.div>
 
         {/* RIGHT: two photos */}
-        <m.div 
+        <m.div
           className="our-story-right"
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          {...reveal(0.15)}
         >
           <div className="our-story-photos">
             <div className="story-photo-wrapper">

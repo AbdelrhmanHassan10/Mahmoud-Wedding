@@ -100,9 +100,10 @@
   width: 100%;
 }
 
-/* Both photos sit in identical boxes and are scaled to the same height,
-   so the two gold frames match exactly (transparent padding is trimmed from the files) */
+/* Both photos share the same frame and file size (756x1000), so identical boxes
+   make them exactly the same size */
 .story-photo-wrapper {
+  aspect-ratio: 756 / 1000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -120,12 +121,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-}
-
-/* the groom's frame is narrower and taller than the bride's; scaled up so both
-   gold frames are the same width (the extra height spills into the section padding) */
-.story-photo.is-groom {
-  transform: scale(1);
 }
 
 /* ===== Tablet ===== */

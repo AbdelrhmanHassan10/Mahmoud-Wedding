@@ -7,6 +7,7 @@ import RSVP from './RSVP';
 import Footer from './Footer';
 import InvitationCover from './InvitationCover';
 import SectionDivider from './SectionDivider';
+import FlyingPetals from './FlyingPetals';
 import { scrollToElement } from './SmoothScroll';
 import './LandingPage.css';
 
@@ -19,6 +20,9 @@ interface LandingPageProps {
 
 const LandingPage: React.FC<LandingPageProps> = ({ isOpened, musicPlaying, onToggleMusic }) => (
   <div className="landing-page">
+    {/* petals tossed in from the sides, behind the content (start once the envelope has opened) */}
+    {isOpened && <FlyingPetals />}
+
     {/* Music button stays fixed at the bottom of the screen */}
     <button
       className={`music-fab${musicPlaying ? ' is-playing' : ''}`}
